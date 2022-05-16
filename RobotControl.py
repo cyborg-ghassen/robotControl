@@ -11,101 +11,99 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from socket import *
 
-HOST = "172.26.192.1"
+HOST = "192.168.137.46"
 PORT = 9999
 ADDRESS = (HOST, PORT)
 BUF_SIZE = 1024
 
 s = socket()
-s.bind(ADDRESS)
-s.listen(5)
-con, addr = s.accept()
+s.connect(ADDRESS)
 
 
 def start():
-    s = socket()
-    s.bind(ADDRESS)
-    s.listen(5)
     print('listen for connection...')
     while True:
-        print('got connection from', addr)
+        print('got connection from', HOST)
         print('-------------------------')
-        con.send('Thank you for connecting'.encode())
+        s.send('Thank you for connecting'.encode())
+        data = s.recv(1024).decode()  # receive response
+
+        print('Received from server: ' + data)
         break
 
 
 def up():
     while True:
-        con.send('UP'.encode())
+        s.send('UP'.encode())
         print("Up request sent")
         break
 
 
 def down():
     while True:
-        con.send('DOWN'.encode())
+        s.send('DOWN'.encode())
         print("Down request sent")
         break
 
 
 def left():
     while True:
-        con.send('LEFT'.encode())
+        s.send('LEFT'.encode())
         print("Left request sent")
         break
 
 
 def right():
     while True:
-        con.send('RIGHT'.encode())
+        s.send('RIGHT'.encode())
         print("Right request sent")
         break
 
 
 def station_1():
     while True:
-        con.send('1'.encode())
+        s.send('1'.encode())
         print("Station 1 request sent")
         break
 
 
 def station_2():
     while True:
-        con.send('2'.encode())
+        s.send('2'.encode())
         print("Station 2 request sent")
         break
 
 
 def station_3():
     while True:
-        con.send('3'.encode())
+        s.send('3'.encode())
         print("Station 3 request sent")
         break
 
 
 def station_4():
     while True:
-        con.send('4'.encode())
+        s.send('4'.encode())
         print("Station 4 request sent")
         break
 
 
 def station_5():
     while True:
-        con.send('5'.encode())
+        s.send('5'.encode())
         print("Station 5 request sent")
         break
 
 
 def station_6():
     while True:
-        con.send('6'.encode())
+        s.send('6'.encode())
         print("Station 6 request sent")
         break
 
 
 def close():
-    con.send('Closed'.encode())
+    s.send('Closed'.encode())
     s.close()
 
 
